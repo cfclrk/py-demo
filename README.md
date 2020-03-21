@@ -23,11 +23,19 @@ Or, create a binary, which creates an executable file at `./dist/py-demo`:
     make binary
 
 
-## 2. Download binary from a release
+## 2. Install from PyPI
 
-Head over to the [releases](https://github.com/cfclrk/py-demo/releases) page and
-grab a binary. Or, to programmatically fetch the latest release (say, for
-MacOS):
+Use `pip` to install the [latest release from
+PyPI](https://pypi.org/project/py-demo/):
+
+    pip install py-demo
+
+
+## 3. Download binary from a release
+
+Download a binary from the
+[releases](https://github.com/cfclrk/py-demo/releases) page. Or, to
+programmatically fetch the latest release (say, for MacOS):
 
     repoUrl=https://api.github.com/repos/cfclrk/py-demo
     assetId=$(curl -s $repoUrl/releases/latest \
@@ -44,7 +52,7 @@ After installing, run either `py-demo` (if installed from source) or `./py-demo`
 
     py-demo --foo bar
 
-    The version of this package is: 0.0.9
+    Project version is: 0.0.2
     The data file says: This is some text
     The value of foo is: bar
 
@@ -52,4 +60,4 @@ And it has a `--version` flag:
 
     py-demo --version
 
-    0.0.9
+    0.0.2
