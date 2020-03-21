@@ -25,13 +25,8 @@ jobs:
       - name: Create a native binary
         run: make binary
 
-      - name: Debug
-        run: |
-          ls -alhF dist
-          file dist/python-demo
-
       - name: Test binary
-        run: ./dist/python-demo
+        run: ./dist/py-demo
 
       - name: Upload binary artifact as a zip
         uses: actions/upload-artifact@v1
@@ -68,8 +63,8 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ./ubuntu-latest/python-demo
-          asset_name: python-demo-Linux-x86_64
+          asset_path: ./ubuntu-latest/py-demo
+          asset_name: py-demo-Linux-x86_64
           asset_content_type: application/x-executable
 
       - name: Upload macOS binary to GitHub Release
@@ -78,6 +73,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ./macOS-latest/python-demo
-          asset_name: python-demo-Darwin-x86_64
+          asset_path: ./macOS-latest/py-demo
+          asset_name: py-demo-Darwin-x86_64
           asset_content_type: application/x-mach-binary
