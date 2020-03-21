@@ -1,4 +1,4 @@
-![img](https://github.com/cfclrk/python-demo/workflows/Release/badge.svg)
+![img](https://github.com/cfclrk/py-demo/workflows/Release/badge.svg)
 
 A minimal python project. Features:
 
