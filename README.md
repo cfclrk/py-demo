@@ -34,14 +34,16 @@ PyPI](https://pypi.org/project/py-demo/):
 ## 3. Download binary from a release
 
 Download a binary from the
-[releases](https://github.com/cfclrk/py-demo/releases) page. Or, to
-programmatically fetch the latest release (say, for MacOS):
+[releases](https://github.com/cfclrk/py-demo/releases) page.
 
+Or, to programmatically fetch the latest release:
+
+    os=Darwin  # or Linux
     repoUrl=https://api.github.com/repos/cfclrk/py-demo
-    assetId=$(curl -s $repoUrl/releases/latest \
-        | jq '.assets[] | select(.name | contains("Darwin")).id')
+    id=$(curl -s $repoUrl/releases/latest \
+             | jq --arg os $os '.assets[] | select(.name | contains($os)).id')
     curl -sSL -H "Accept: application/octet-stream" \
-        $repoUrl/releases/assets/$assetId -o py-demo
+        $repoUrl/releases/assets/$id -o py-demo
     chmod +x py-demo
 
 
