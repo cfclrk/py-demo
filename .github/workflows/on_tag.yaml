@@ -1,0 +1,83 @@
+name: Release
+on:
+  push:
+    tags: ["v*"]
+
+jobs:
+  create-release-assets:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest, macOS-latest]
+    steps:
+      - name: Checkout commit
+        uses: actions/checkout@v2
+
+      - name: Set up Python 3.8
+        uses: actions/setup-python@v1
+        with: {python-version: 3.8}
+
+      - name: Install this project
+        run: |
+          pip install -U pip setuptools
+          pip install .
+
+      - name: Create a native binary
+        run: make binary
+
+      - name: Debug
+        run: |
+          ls -alhF dist
+          file dist/python-demo
+
+      - name: Test binary
+        run: ./dist/python-demo
+
+      - name: Upload binary artifact as a zip
+        uses: actions/upload-artifact@v1
+        with:
+          name: ${{ matrix.os }}
+          path: dist
+
+  publish:
+    runs-on: ubuntu-latest
+    needs: create-release-assets
+    steps:
+      - name: Download macOS artifact
+        uses: actions/download-artifact@v1
+        with:
+          name: macOS-latest
+
+      - name: Download linux artifact
+        uses: actions/download-artifact@v1
+        with:
+          name: ubuntu-latest
+
+      - name: Create a GitHub Release
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ github.ref }}
+          release_name: Release ${{ github.ref }}
+
+      - name: Upload linux binary to GitHub Release
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ./ubuntu-latest/python-demo
+          asset_name: python-demo-Linux-x86_64
+          asset_content_type: application/x-executable
+
+      - name: Upload macOS binary to GitHub Release
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ./macOS-latest/python-demo
+          asset_name: python-demo-Darwin-x86_64
+          asset_content_type: application/x-mach-binary
