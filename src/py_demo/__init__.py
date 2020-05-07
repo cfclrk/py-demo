@@ -1,6 +1,6 @@
 from importlib import metadata
 
-m = metadata.metadata(__name__)
+project_metadata = metadata.metadata(__name__)
 
-__version__ = m.get("Version")
-__summary__ = m.get("Summary")
+__version__ = project_metadata.get("Version")
+__summary__ = project_metadata.get("Summary")

@@ -5,7 +5,7 @@ A minimal python project. Features:
 -   Create a binary using
     [Pyinstaller](https://pythonhosted.org/PyInstaller/index.html)
 -   Correctly handle data files
--   Releases
+-   GitHub Actions to test and release
     -   Create a [release](https://github.com/cfclrk/py-demo/releases) by
         pushing a tag
     -   Adds PyInstaller binaries to the release
@@ -36,7 +36,7 @@ PyPI](https://pypi.org/project/py-demo/):
 
 ## 3. Standalone binary
 
-No local Python installation is needed. Just download a binary from the
+No local Python installation is needed. Download a binary from the
 [releases](https://github.com/cfclrk/py-demo/releases) page.
 
 
