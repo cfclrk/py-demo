@@ -31,9 +31,12 @@ def main(opts: dict) -> None:
     This is the API entry-point to the program. Other projects should be able to import
     this project and run this function with the same options that the CLI supports.
     """
-    print(f"Project version is: {__version__}")
+    print("Python version:")
+    print(sys.version)
+
     data = resources.read_text(data_files, "some_data.txt").strip()
     print(f"The data file says: {data}")
+
     foo = opts["foo"]
     print(f"The value of foo is: {foo}")
 

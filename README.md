@@ -4,26 +4,29 @@ A minimal python project. Features:
 
 -   Create a binary using
     [Pyinstaller](https://pythonhosted.org/PyInstaller/index.html)
--   GitHub Actions adds binaries to
-    [releases](https://github.com/cfclrk/py-demo/releases)
 -   Correctly handle data files
+-   Releases
+    -   Create a [release](https://github.com/cfclrk/py-demo/releases) by
+        pushing a tag
+    -   Adds PyInstaller binaries to the release
+    -   Deploys a wheel to PyPI
 
 
-# Installation Options
+# Installation
+
+Here are a few different ways this project can be installed.
 
 
-## 1. Build from source (requires Python 3.8+)
+## 1. From source (requires Python 3.8+)
 
-Clone this project locally and then run:
+To install from source, clone this project from github and `pip install` it.
 
+    git clone git@github.com:cfclrk/py-demo.git
+    cd py-demo
     pip install .
 
-Or, create a binary, which creates an executable file at `./dist/py-demo`:
 
-    make binary
-
-
-## 2. Install from PyPI
+## 2. From PyPI (requires Python 3.8+)
 
 Use `pip` to install the [latest release from
 PyPI](https://pypi.org/project/py-demo/):
@@ -31,26 +34,13 @@ PyPI](https://pypi.org/project/py-demo/):
     pip install py-demo
 
 
-## 3. Download binary from a release
+## 3. Standalone binary
 
-Download a binary from the
+No local Python installation is needed. Just download a binary from the
 [releases](https://github.com/cfclrk/py-demo/releases) page.
-
-Or, to programmatically fetch the latest release:
-
-    os=Darwin  # or Linux
-    repoUrl=https://api.github.com/repos/cfclrk/py-demo
-    id=$(curl -s $repoUrl/releases/latest \
-             | jq --arg os $os '.assets[] | select(.name | contains($os)).id')
-    curl -sSL -H "Accept: application/octet-stream" \
-        $repoUrl/releases/assets/$id -o py-demo
-    chmod +x py-demo
 
 
 # Example
-
-After installing, run either `py-demo` (if installed from source) or `./py-demo`
-(if installed as a binary).
 
     py-demo --foo bar
 

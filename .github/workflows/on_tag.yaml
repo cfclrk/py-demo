@@ -29,7 +29,7 @@ jobs:
         run: ./dist/py-demo
 
       - name: Upload binary artifact as a zip
-        uses: actions/upload-artifact@v1
+        uses: actions/upload-artifact@v2
         with:
           name: ${{ matrix.os }}
           path: dist
@@ -45,15 +45,8 @@ jobs:
     runs-on: ubuntu-latest
     needs: create-release-assets
     steps:
-      - name: Download macOS artifact
-        uses: actions/download-artifact@v1
-        with:
-          name: macOS-latest
-
-      - name: Download linux artifact
-        uses: actions/download-artifact@v1
-        with:
-          name: ubuntu-latest
+      - name: Download artifacts
+        uses: actions/download-artifact@v2
 
       - name: Create a GitHub Release
         id: create_release
