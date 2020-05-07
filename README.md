@@ -5,11 +5,8 @@ A minimal python project. Features:
 -   Create a binary using
     [Pyinstaller](https://pythonhosted.org/PyInstaller/index.html)
 -   Correctly handle data files
--   GitHub Actions to test and release
-    -   Create a [release](https://github.com/cfclrk/py-demo/releases) by
-        pushing a tag
-    -   Adds PyInstaller binaries to the release
-    -   Deploys a wheel to PyPI
+-   GitHub Actions to test and
+    [release](https://github.com/cfclrk/py-demo/releases)
 
 
 # Installation
@@ -53,3 +50,15 @@ And it has a `--version` flag:
     py-demo --version
 
     0.0.2
+
+
+# Testing
+
+Run tests:
+
+    make test
+
+Run tests exactly as they will be run in GitHub Actions using
+[act](https://github.com/nektos/act):
+
+    act -P ubuntu-latest=nektos/act-environments-ubuntu:18.04 -j test
