@@ -15,8 +15,7 @@ test:
 
 .PHONY: format
 format:
-	black --target-version py38 "${PROJECT_DIR}"
-	black --target-version py38 tests
+	black --target-version py38 .
 	isort **/*.py
 
 .PHONY: wheel

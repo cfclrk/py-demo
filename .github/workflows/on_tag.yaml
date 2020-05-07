@@ -41,11 +41,11 @@ jobs:
           PYPI_PASSWORD: ${{ secrets.PYPI_PASSWORD }}
         run: make pypi
 
-  publish:
+  create-release:
     runs-on: ubuntu-latest
     needs: create-release-assets
     steps:
-      - name: Download artifacts
+      - name: Download all artifacts
         uses: actions/download-artifact@v2
 
       - name: Create a GitHub Release
