@@ -41,4 +41,4 @@ binary:
 .PHONY: clean
 clean:
 	rm -rf build dist .mypy_cache .pytest_cache
-	find -X . -name __pycache__ | xargs rm -rf
+	find . -name __pycache__ -o -name .mypy_cache -type d -depth -exec rm -r {} ";"
