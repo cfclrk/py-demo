@@ -8,7 +8,7 @@ from py_demo import __summary__, __version__, data_files
 def cli() -> None:
     """Parse command line arguments and pass them to ``main``.
 
-    This is the interactive entry-point to the program.
+    This is the interactive (CLI) entry-point to the program.
     """
     parser = argparse.ArgumentParser(description=__summary__)
     parser.add_argument(

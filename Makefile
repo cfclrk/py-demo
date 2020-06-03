@@ -1,14 +1,14 @@
 PROJECT_DIR = src
 PYPI_URL ?= https://upload.pypi.org/legacy/
 
-.PHONY: install-dev
-install-dev:
+.PHONY: dev
+dev:
 	pip install -e .[dev]
 
 .PHONY: test
 test:
-	flake8 "${PROJECT_DIR}"
-	mypy "${PROJECT_DIR}"
+	flake8 "${PROJECT_DIR}" tests
+	mypy "${PROJECT_DIR}" tests
 	black -q --target-version py38 --check .
 	isort **/*.py --check-only
 	pytest tests

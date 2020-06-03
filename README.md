@@ -11,7 +11,7 @@ A minimal python project to explore and clarify best practices for project struc
 
 1.  **From source** (requires Python 3.8+). Clone this project from GitHub and `pip install` it.
 
-    ```sh
+    ```bash
     git clone git@github.com:cfclrk/py-demo.git
     cd py-demo
     pip install .
@@ -19,7 +19,7 @@ A minimal python project to explore and clarify best practices for project struc
 
 2.  **From PyPI** (requires Python 3.8+). Use `pip` to install the [latest release from PyPI](https://pypi.org/project/py-demo/):
 
-    ```sh
+    ```bash
     pip install py-demo
     ```
 
@@ -28,7 +28,7 @@ A minimal python project to explore and clarify best practices for project struc
 
 # Example
 
-```sh
+```bash
 py-demo --foo bar
 ```
 
@@ -45,13 +45,13 @@ Output:
 
 Run unit tests:
 
-```sh
+```bash
 make test
 ```
 
 Run tests exactly as they will be run in GitHub Actions using [act](https://github.com/nektos/act):
 
-```sh
+```bash
 act -P ubuntu-latest=nektos/act-environments-ubuntu:18.04 -j test
 ```
 
