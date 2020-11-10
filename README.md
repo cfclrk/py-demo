@@ -1,15 +1,19 @@
 ![img](https://github.com/cfclrk/py-demo/workflows/Release/badge.svg)
 
-A minimal python project to explore and clarify best practices for project structure, deployment, testing, etc.
+A minimal python project to explore and clarify best practices for project
+structure, deployment, testing, etc.
 
--   Create a binary using [Pyinstaller](https://pythonhosted.org/PyInstaller/index.html)
+-   Create a binary using
+    [Pyinstaller](https://pythonhosted.org/PyInstaller/index.html)
 -   Correctly handle data files
--   GitHub Actions to test and [release](https://github.com/cfclrk/py-demo/releases)
+-   GitHub Actions to test and
+    [release](https://github.com/cfclrk/py-demo/releases)
 
 
 # Installation Options
 
-1.  **From source** (requires Python 3.8+). Clone this project from GitHub and `pip install` it.
+1.  **From source** (requires Python 3.8+). Clone this project from GitHub and
+    `pip install` it.
 
     ```bash
     git clone git@github.com:cfclrk/py-demo.git
@@ -17,13 +21,15 @@ A minimal python project to explore and clarify best practices for project struc
     pip install .
     ```
 
-2.  **From PyPI** (requires Python 3.8+). Use `pip` to install the [latest release from PyPI](https://pypi.org/project/py-demo/):
+2.  **From PyPI** (requires Python 3.8+). Use `pip` to install the [latest
+    release from PyPI](https://pypi.org/project/py-demo/):
 
     ```bash
     pip install py-demo
     ```
 
-3.  **Standalone binary**. No local Python installation is needed. Download a binary from the [releases](https://github.com/cfclrk/py-demo/releases) page.
+3.  **Standalone binary**. No local Python installation is needed. Download a
+    binary from the [releases](https://github.com/cfclrk/py-demo/releases) page.
 
 
 # Example
@@ -49,7 +55,8 @@ Run unit tests:
 make test
 ```
 
-Run tests exactly as they will be run in GitHub Actions using [act](https://github.com/nektos/act):
+Run tests exactly as they will be run in GitHub Actions using
+[act](https://github.com/nektos/act):
 
 ```bash
 act -P ubuntu-latest=nektos/act-environments-ubuntu:18.04 -j test
@@ -58,15 +65,13 @@ act -P ubuntu-latest=nektos/act-environments-ubuntu:18.04 -j test
 
 # Create a new project from this one
 
-```fish
-set PROJECT_NAME change-me
-
+```bash
 git clone --depth 1 git@github.com:cfclrk/py-demo.git $PROJECT_NAME
 cd $PROJECT_NAME
 rm -rf .git .github README.md
 
 # Update module name
-set moduleName (echo $PROJECT_NAME | string replace - _)
+moduleName=$(echo $PROJECT_NAME | sed s/-/_/g)
 mv src/py_demo src/$moduleName
 
 # Replace py-demo with $PROJECT_NAME
