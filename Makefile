@@ -9,7 +9,7 @@ dev:
 test:
 	flake8 "${PROJECT_DIR}" tests
 	mypy "${PROJECT_DIR}" tests
-	black -q --target-version py38 --check .
+	black --target-version py38 --check .
 	isort **/*.py --check-only
 	pytest tests
 
@@ -41,5 +41,5 @@ binary:
 .PHONY: clean
 clean:
 	rm -rf build dist .mypy_cache .pytest_cache
-	find . -name __pycache__ -o -name .mypy_cache -type d -depth \
-	    -exec rm -r {} ";"
+	find . -name __pycache__ -type d -exec rm -r {} ";"
+	find . -name .mypy_cache -type d -exec rm -r {} ";"
