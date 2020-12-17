@@ -1,7 +1,8 @@
 ![img](https://github.com/cfclrk/py-demo/workflows/Release/badge.svg)
 
 A minimal python project to explore and clarify best practices for project
-structure, deployment, testing, etc.
+structure, deployment, testing, etc. I am trying to document design decisions in
+the [wiki](https://github.com/cfclrk/py-demo/wiki).
 
 -   Create a binary using
     [Pyinstaller](https://pythonhosted.org/PyInstaller/index.html)
@@ -10,7 +11,7 @@ structure, deployment, testing, etc.
     [release](https://github.com/cfclrk/py-demo/releases)
 
 
-# Installation Options
+# Installation
 
 1.  **From source** (requires Python 3.8+). Clone this project from GitHub and
     `pip install` it.
@@ -70,15 +71,13 @@ git clone --depth 1 git@github.com:cfclrk/py-demo.git $PROJECT_NAME
 cd $PROJECT_NAME
 rm -rf .git .github README.md
 
-# Update module name
+# Update the project name
+find src -type f -exec sed -i "" "s/py-demo/$PROJECT_NAME/g" {} ";"
+
+# Update the python module name
 moduleName=$(echo $PROJECT_NAME | sed s/-/_/g)
 mv src/py_demo src/$moduleName
-
-# Replace py-demo with $PROJECT_NAME
-find . -type f -exec sed -i "" "s/py-demo/$PROJECT_NAME/g" {} ";"
-
-# Replace py_demo with module name
-find . -type f -exec sed -i "" "s/py_demo/$moduleName/g" {} ";"
+find src -type f -exec sed -i "" "s/py_demo/$moduleName/g" {} ";"
 
 # Set version back to 0.0.1
 sed -i "" 's/^version = .*/version = 0.0.1/' setup.cfg
