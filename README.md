@@ -22,8 +22,8 @@ the [wiki](https://github.com/cfclrk/py-demo/wiki).
     pip install .
     ```
 
-2.  **From PyPI** (requires Python 3.8+). Use `pip` to install the [latest
-    release from PyPI](https://pypi.org/project/py-demo/):
+2.  **From PyPI** (requires Python 3.8+). Use `pip` to install the latest
+    [release](https://pypi.org/project/py-demo/) from PyPI:
 
     ```bash
     pip install py-demo
@@ -39,13 +39,15 @@ the [wiki](https://github.com/cfclrk/py-demo/wiki).
 py-demo --foo bar
 ```
 
-Output:
-
-    Python version:
-    3.8.2 (default, Mar 19 2020, 11:37:51)
-    [Clang 11.0.0 (clang-1100.0.33.16)]
-    The data file says: This is some text
-    The value of foo is: bar
+    {
+      "opts": {
+        "version": false,
+        "foo": "bar"
+      },
+      "version": "3.9",
+      "data": "This is some text",
+      "foo": "bar"
+    }
 
 
 # Testing

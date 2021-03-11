@@ -1,4 +1,5 @@
 import argparse
+import json
 import sys
 from importlib import resources
 
@@ -22,23 +23,19 @@ def cli() -> None:
         sys.exit(0)
 
     opts = vars(args)
-    main(opts)
+    print(json.dumps(main(opts), indent=2))
 
 
-def main(opts: dict) -> None:
+def main(opts: dict) -> dict:
     """Run the program with the given options.
 
     This is the API entry-point to the program. Other projects should be able to import
     this project and run this function with the same options that the CLI supports.
     """
-    print("Python version:")
-    print(sys.version)
-
+    version = f"{sys.version_info.major}.{sys.version_info.minor}"
     data = resources.read_text(data_files, "some_data.txt").strip()
-    print(f"The data file says: {data}")
-
-    foo = opts["foo"]
-    print(f"The value of foo is: {foo}")
+    foo = opts.get("foo")
+    return {"opts": opts, "version": version, "data": data, "foo": foo}
 
 
 if __name__ == "__main__":
