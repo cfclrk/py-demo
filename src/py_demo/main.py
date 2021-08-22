@@ -13,14 +13,10 @@ def cli() -> None:
     """
     parser = argparse.ArgumentParser(description=__summary__)
     parser.add_argument(
-        "--version", default=False, action="store_true", help="Print version"
+        "--version", default=False, action="version", version=__version__
     )
     parser.add_argument("--foo", type=str, help="Provide a foo")
     args = parser.parse_args()
-
-    if args.version:
-        print(__version__)
-        sys.exit(0)
 
     opts = vars(args)
     print(json.dumps(main(opts), indent=2))
@@ -30,7 +26,7 @@ def main(opts: dict) -> dict:
     """Run this program with the given options.
 
     This is the programmatic entry-point to the program. Python projects should be able
-    to import this package and run this function using the same options that the CLI
+    to import this module and run this function using the same options that the CLI
     supports.
     """
     version = f"{sys.version_info.major}.{sys.version_info.minor}"
