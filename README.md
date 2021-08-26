@@ -40,13 +40,12 @@ py-demo --foo bar
 ```
 
     {
-      "opts": {
+      "cli_opts": {
         "version": false,
         "foo": "bar"
       },
-      "version": "3.9",
-      "data": "This is some text",
-      "foo": "bar"
+      "python_version": "3.9",
+      "data_from_file": "This is some text"
     }
 
 
@@ -69,21 +68,21 @@ act -P ubuntu-latest=nektos/act-environments-ubuntu:18.04 -j test
 # Create a new project from this one
 
 ```bash
-git clone --depth 1 git@github.com:cfclrk/py-demo.git $PROJECT_NAME
-cd $PROJECT_NAME
+git clone --depth 1 git@github.com:cfclrk/py-demo.git $NEW_PROJECT_NAME
+cd $NEW_PROJECT_NAME
 rm -rf .git .github README.md
 
 # Update the project name
-find . -type f -exec sed -i "" "s/py-demo/$PROJECT_NAME/g" {} ";"
+find . -type f -exec sed -i "" "s/py-demo/$NEW_PROJECT_NAME/g" {} ";"
 
 # Update the python module name
-moduleName=$(echo $PROJECT_NAME | sed s/-/_/g)
+moduleName=$(echo $NEW_PROJECT_NAME | sed s/-/_/g)
 mv src/py_demo src/$moduleName
 find . -type f -exec sed -i "" "s/py_demo/$moduleName/g" {} ";"
 
 # Set version back to 0.0.1
 sed -i "" 's/^version = .*/version = 0.0.1/' setup.cfg
-```
 
-Also, if you are not me (or you are work-me in my work GitHub account), remove
-(or modify) the `url` and `project_urls` lines in `setup.cfg`.
+# Delete lines 7-10 in setup.cfg, which have project URL
+sed -i "" 7,10d setup.cfg
+```

@@ -29,10 +29,13 @@ def main(opts: dict) -> dict:
     to import this module and run this function using the same options that the CLI
     supports.
     """
-    version = f"{sys.version_info.major}.{sys.version_info.minor}"
-    data = resources.read_text(data_files, "some_data.txt").strip()
-    foo = opts.get("foo")
-    return {"opts": opts, "version": version, "data": data, "foo": foo}
+    python_version = f"{sys.version_info.major}.{sys.version_info.minor}"
+    data_from_file = resources.read_text(data_files, "some_data.txt").strip()
+    return {
+        "cli_opts": opts,
+        "python_version": python_version,
+        "data_from_file": data_from_file,
+    }
 
 
 # When executed interactively (vs being programmatically imported), use the CLI.
