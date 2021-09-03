@@ -1,0 +1,90 @@
+#+PROPERTY: header-args+  :exports  both
+#+PROPERTY: header-args+  :eval     never-export
+#+OPTIONS: toc:nil
+
+#+NAME: ReleaseBadge
+[[https://github.com/cfclrk/py-demo/workflows/Release/badge.svg]]
+
+A minimal python project to explore and clarify best practices for project
+structure, deployment, testing, etc. I am trying to document design decisions in
+the [[https://github.com/cfclrk/py-demo/wiki][wiki]].
+
+- Create a binary using [[https://pythonhosted.org/PyInstaller/index.html][Pyinstaller]]
+- Correctly handle data files
+- GitHub Actions to test and [[https://github.com/cfclrk/py-demo/releases][release]]
+
+* Installation
+
+  1. *From source* (requires Python 3.8+). Clone this project from GitHub
+     and =pip install= it.
+
+     #+begin_src bash :results output
+       git clone git@github.com:cfclrk/py-demo.git
+       cd py-demo
+       pip install .
+     #+end_src
+
+  2. *From PyPI* (requires Python 3.8+). Use =pip= to install the latest [[https://pypi.org/project/py-demo/][release]]
+     from PyPI:
+
+     #+begin_src bash
+       pip install py-demo
+     #+end_src
+
+  3. *Standalone binary*. No local Python installation is needed. Download a
+     binary from the [[https://github.com/cfclrk/py-demo/releases][releases]] page.
+
+* Example
+
+  #+begin_src bash :results output
+    py-demo --foo bar
+  #+end_src
+
+  #+RESULTS:
+  : {
+  :   "cli_opts": {
+  :     "version": false,
+  :     "foo": "bar"
+  :   },
+  :   "python_version": "3.9",
+  :   "data_from_file": "This is some text"
+  : }
+
+* Testing
+
+  Run unit tests:
+
+  #+begin_src bash
+    make test
+  #+end_src
+
+  Run tests exactly as they will be run in GitHub Actions using [[https://github.com/nektos/act][act]]:
+
+  #+begin_src bash
+    act -P ubuntu-latest=nektos/act-environments-ubuntu:18.04 -j test
+  #+end_src
+
+* Create a new project from this one
+
+  #+header: :mkdirp yes :dir ~/Projects/codenotes/python
+  #+begin_src bash :var NEW_PROJECT_NAME="git-dot"
+    git clone --depth 1 git@github.com:cfclrk/py-demo.git $NEW_PROJECT_NAME
+    cd $NEW_PROJECT_NAME
+    rm -rf .git .github README.md
+
+    # Update the project name
+    find . -type f -exec sed -i "" "s/py-demo/$NEW_PROJECT_NAME/g" {} ";"
+
+    # Update the python module name
+    moduleName=$(echo $NEW_PROJECT_NAME | sed s/-/_/g)
+    mv src/py_demo src/$moduleName
+    find . -type f -exec sed -i "" "s/py_demo/$moduleName/g" {} ";"
+
+    # Set version back to 0.0.1
+    sed -i "" 's/^version = .*/version = 0.0.1/' setup.cfg
+
+    # Delete lines 7-10 in setup.cfg, which have project URL
+    sed -i "" 7,10d setup.cfg
+  #+end_src
+
+  #+RESULTS:
