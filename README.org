@@ -5,9 +5,8 @@
 #+NAME: ReleaseBadge
 [[https://github.com/cfclrk/py-demo/workflows/Release/badge.svg]]
 
-A minimal python project to explore and clarify best practices for project
-structure, deployment, testing, etc. I am trying to document design decisions in
-the [[https://github.com/cfclrk/py-demo/wiki][wiki]].
+A minimal python project to demonstrate best practices for project structure,
+deployment, testing, etc. I am trying to document design decisions in the [[https://github.com/cfclrk/py-demo/wiki][wiki]].
 
 - Create a binary using [[https://pythonhosted.org/PyInstaller/index.html][Pyinstaller]]
 - Correctly handle data files
@@ -66,8 +65,9 @@ the [[https://github.com/cfclrk/py-demo/wiki][wiki]].
 
 * Create a new project from this one
 
-  #+header: :mkdirp yes :dir ~/Projects/codenotes/python
-  #+begin_src bash :var NEW_PROJECT_NAME="git-dot"
+  #+header: :dir ~/Projects/codenotes/python :mkdirp yes
+  #+header: :var NEW_PROJECT_NAME="git-dot"
+  #+begin_src bash
     git clone --depth 1 git@github.com:cfclrk/py-demo.git $NEW_PROJECT_NAME
     cd $NEW_PROJECT_NAME
     rm -rf .git .github README.md
@@ -86,5 +86,3 @@ the [[https://github.com/cfclrk/py-demo/wiki][wiki]].
     # Delete lines 7-10 in setup.cfg, which have project URL
     sed -i "" 7,10d setup.cfg
   #+end_src
-
-  #+RESULTS:

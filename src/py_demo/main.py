@@ -1,25 +1,7 @@
-import argparse
-import json
 import sys
 from importlib import resources
 
-from py_demo import __summary__, __version__, data_files
-
-
-def cli() -> None:
-    """Parse command line arguments and call ``main``.
-
-    This is the interactive (CLI) entry-point to the program.
-    """
-    parser = argparse.ArgumentParser(description=__summary__)
-    parser.add_argument(
-        "--version", default=False, action="version", version=__version__
-    )
-    parser.add_argument("--foo", type=str, help="Provide a foo")
-    args = parser.parse_args()
-
-    opts = vars(args)
-    print(json.dumps(main(opts), indent=2))
+from py_demo import data_files
 
 
 def main(opts: dict) -> dict:
@@ -36,8 +18,3 @@ def main(opts: dict) -> dict:
         "python_version": python_version,
         "data_from_file": data_from_file,
     }
-
-
-# When executed interactively (vs being programmatically imported), use the CLI.
-if __name__ == "__main__":
-    cli()
