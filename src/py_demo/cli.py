@@ -22,7 +22,7 @@ def cli() -> None:
     cli_parser = arg_parser()
     cli_args = cli_parser.parse_args()
     cli_vars = vars(cli_args)
-    print(json.dumps(main(cli_vars), indent=2))
+    print(json.dumps(main.main(cli_vars), indent=2))
 
 
 # When executed interactively (vs being programmatically imported), use the CLI.
