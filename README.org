@@ -65,8 +65,11 @@ deployment, testing, etc. I am trying to document design decisions in the [[http
 
 * Create a new project from this one
 
-  #+header: :dir ~/Projects/codenotes/python :mkdirp yes
-  #+header: :var NEW_PROJECT_NAME="git-dot"
+  - =cd= to the directory where this project should be created
+  - set =NEW_PROJECT_NAME=<my-project-name>=
+
+  #+header: :dir ~/Work :mkdirp yes
+  #+header: :var NEW_PROJECT_NAME="feutil"
   #+begin_src bash
     git clone --depth 1 git@github.com:cfclrk/py-demo.git $NEW_PROJECT_NAME
     cd $NEW_PROJECT_NAME
