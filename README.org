@@ -60,7 +60,7 @@ deployment, testing, etc. I am trying to document design decisions in the [[http
   Run tests exactly as they will be run in GitHub Actions using [[https://github.com/nektos/act][act]]:
 
   #+begin_src bash
-    act -P ubuntu-latest=nektos/act-environments-ubuntu:18.04 -j test
+    act -j test
   #+end_src
 
 * Create a new project from this one
