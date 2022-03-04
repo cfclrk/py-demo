@@ -20,7 +20,7 @@ deployment, testing, etc. I am trying to document design decisions in the [[http
      #+begin_src bash :results output
        git clone git@github.com:cfclrk/py-demo.git
        cd py-demo
-       pip install .
+       pip install .  # or: "make dev"
      #+end_src
 
   2. *From PyPI* (requires Python 3.8+). Use =pip= to install the latest [[https://pypi.org/project/py-demo/][release]]
@@ -45,19 +45,21 @@ deployment, testing, etc. I am trying to document design decisions in the [[http
   :     "version": false,
   :     "foo": "bar"
   :   },
-  :   "python_version": "3.9",
+  :   "python_version": "3.10",
   :   "data_from_file": "This is some text"
   : }
 
 * Testing
 
-  Run unit tests:
+  First ensure all test dependencies are installed (=make dev=), then run unit
+  tests (=make test=).
 
   #+begin_src bash
+    make dev
     make test
   #+end_src
 
-  Run tests exactly as they will be run in GitHub Actions using [[https://github.com/nektos/act][act]]:
+  To run tests exactly as they will be run in GitHub Actions, use [[https://github.com/nektos/act][act]]:
 
   #+begin_src bash
     act -j test
@@ -65,21 +67,26 @@ deployment, testing, etc. I am trying to document design decisions in the [[http
 
 * Create a new project from this one
 
-  - =cd= to the directory where this project should be created
-  - set =NEW_PROJECT_NAME=<my-project-name>=
+  This will create a new directory (under the current directory) called
+  =$PROJECT_NAME=.
+
+  1. Set =PROJECT_NAME=<my-new-project-name>=
+  2. Run the following script:
 
   #+header: :dir ~/Work :mkdirp yes
-  #+header: :var NEW_PROJECT_NAME="feutil"
+  #+header: :var PROJECT_NAME="feutil"
   #+begin_src bash
-    git clone --depth 1 git@github.com:cfclrk/py-demo.git $NEW_PROJECT_NAME
-    cd $NEW_PROJECT_NAME
+    # Download source code
+    git clone --depth 1 git@github.com:cfclrk/py-demo.git $PROJECT_NAME
+    cd $PROJECT_NAME
     rm -rf .git .github README.md
 
-    # Update the project name
-    find . -type f -exec sed -i "" "s/py-demo/$NEW_PROJECT_NAME/g" {} ";"
+    # Update the project name from "py-demo" to the new $PROJECT_NAME
+    find . -type f -exec sed -i "" "s/py-demo/$PROJECT_NAME/g" {} ";"
 
-    # Update the python module name
-    moduleName=$(echo $NEW_PROJECT_NAME | sed s/-/_/g)
+    # Update the python module name from "py-demo" to the new $PROJECT_NAME. Module
+    # names cannot have dashes, so first replace dashes with underscores.
+    moduleName=$(echo $PROJECT_NAME | sed s/-/_/g)
     mv src/py_demo src/$moduleName
     find . -type f -exec sed -i "" "s/py_demo/$moduleName/g" {} ";"
 
