@@ -79,7 +79,7 @@ deployment, testing, etc. I am trying to document design decisions in the [[http
     # Download source code
     git clone --depth 1 git@github.com:cfclrk/py-demo.git $PROJECT_NAME
     cd $PROJECT_NAME
-    rm -rf .git .github README.md
+    rm -rf .git .github README.org
 
     # Update the project name from "py-demo" to the new $PROJECT_NAME
     find . -type f -exec sed -i "" "s/py-demo/$PROJECT_NAME/g" {} ";"
