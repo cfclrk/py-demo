@@ -5,8 +5,10 @@
 #+NAME: ReleaseBadge
 [[https://github.com/cfclrk/py-demo/workflows/Release/badge.svg]]
 
-A minimal python project to demonstrate best practices for project structure,
-deployment, testing, etc. I am trying to document design decisions in the [[https://github.com/cfclrk/py-demo/wiki][wiki]].
+A minimal python project to demonstrate what I currently think are best
+practices for project structure, deployment, testing, etc (at the time of this
+project's creation, anyway). I am trying to document design decisions in the
+[[https://github.com/cfclrk/py-demo/wiki][wiki]].
 
 - Create a binary using [[https://pythonhosted.org/PyInstaller/index.html][Pyinstaller]]
 - Correctly handle data files
