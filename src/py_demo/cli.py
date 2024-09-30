@@ -7,6 +7,7 @@ from py_demo import __summary__, __version__, main
 def arg_parser() -> argparse.ArgumentParser:
     """Define a CLI parser for this program."""
     parser = argparse.ArgumentParser(description=__summary__)
+    assert isinstance(__version__, str)
     parser.add_argument(
         "--version", default=False, action="version", version=__version__
     )

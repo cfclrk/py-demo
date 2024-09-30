@@ -9,7 +9,7 @@ dev:
 test:
 	flake8 "${PROJECT_DIR}" tests
 	mypy "${PROJECT_DIR}" tests
-	black --target-version py38 --check .
+	black --check .
 	isort **/*.py --check-only
 	pytest tests
 

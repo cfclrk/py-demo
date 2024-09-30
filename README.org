@@ -50,7 +50,7 @@ Features include:
   :     "version": false,
   :     "foo": "bar"
   :   },
-  :   "python_version": "3.10",
+  :   "python_version": "3.12",
   :   "data_from_file": "This is some text"
   : }
 
